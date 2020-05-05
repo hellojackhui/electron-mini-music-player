@@ -6,12 +6,16 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <title>本地播放器</title>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/> 
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../styles/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./index.css" />
+
   </head>
   <body>
     <div class="container mt-4">
       <h1>我的播放器</h1>
       <button type="button" id="add-music-button" class="btn btn-primary btn-lg btn-block mt-4">添加歌曲和曲库</button>
+      <div id="trackList" class="mt-4"></div>
     </div>
     <script src="./index.js"></script>
   </body>
