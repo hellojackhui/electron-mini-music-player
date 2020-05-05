@@ -28,7 +28,7 @@ app.on('ready', () => {
    })
    ipcMain.on('add-music-window', (event, arg) => {
      const secondWindow = new AppWindow({
-       width: 400,
+       width: 500,
        height: 300,
        parent: mainWindow,
      }, './renderer/add.html');
@@ -40,7 +40,7 @@ app.on('ready', () => {
    })
    ipcMain.on('delete-track', (event, trackid) => {
      const updatedTracks = myStore.deleteTracks(trackid).getTracks();
-     mainWindow.send('getTracks', myStore.getTracks());
+     mainWindow.send('getTracks', updatedTracks);
    })
    ipcMain.on('open-music-file', (event, arg) => {
      dialog.showOpenDialog({

@@ -3,8 +3,6 @@
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <title>本地播放器</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../styles/font-awesome-4.7.0/css/font-awesome.min.css" />
@@ -13,9 +11,16 @@
   </head>
   <body>
     <div class="container mt-4">
-      <h1>我的播放器</h1>
+      <h2>我的播放器</h2>
       <button type="button" id="add-music-button" class="btn btn-primary btn-lg btn-block mt-4">添加歌曲和曲库</button>
       <div id="trackList" class="mt-4"></div>
+      <div class="container fixed-bottom bg-white pb-4" id="player-container">
+        <hr />
+        <div class="row my-2" id="player-status"></div>
+        <div class="progress">
+          <div class="progress-bar bg-success" id="player-progress" role="progressbar" style="width: 0%">0%</div>
+        </div> 
+      </div>
     </div>
     <script src="./index.js"></script>
   </body>

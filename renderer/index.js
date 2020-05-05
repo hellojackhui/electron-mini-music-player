@@ -1,5 +1,5 @@
 const {ipcRenderer} = require('electron');
-const { $ } = require('./helper');
+const { $, convertDuration } = require('./helper');
 let musicAudio = new Audio();
 let allTracks;
 let currentTrack;
@@ -36,7 +36,11 @@ $('trackList').addEventListener('click', (e) => {
 
 ipcRenderer.on('getTracks', (event, tracks) => {
    allTracks = tracks;
+   if (allTracks.length == 0 && Object.prototype.toString.call(musicAudio)) {
+     musicAudio.src = '';
+   }
    renderTrackListHtml(tracks);
+   $('player-container').style.display = allTracks.length == 0 ? 'none' : 'block';
 })
 
 const renderTrackListHtml = (tracks) => {
@@ -58,3 +62,34 @@ const renderTrackListHtml = (tracks) => {
   trackListDOM.innerHTML = tracks.length > 0 ? `<ul class="list-group">${trackListHTML}</ul>` : emptyHTML;
 };
 
+const renderPlayerHtml = (name, duration) => {
+    const playerDOM = $('player-status');
+    const html = `
+    <div class="col font-weight-bold">
+        正在播放：${name}
+    </div>
+    <div class="col">
+        <span id="current-seeker">00.00</span> / ${convertDuration(duration)}
+    </div>
+    `
+    playerDOM.innerHTML = html;
+}
+
+const updatePlayerHtml = (currentTime, duration) => {
+    const playerDOM = $('current-seeker');
+    const progressDOM = $('player-progress');
+    const progreepercent = duration > 0 ? Math.floor(currentTime / duration * 100) : 0;
+    progressDOM.style.width = `${progreepercent}%`;
+    progressDOM.innerHTML = `${progreepercent}%`;
+    playerDOM.innerHTML = convertDuration(currentTime);
+}
+
+musicAudio.addEventListener('loadedmetadata', () => {
+  // 渲染播放器状态
+  renderPlayerHtml(currentTrack.filename, musicAudio.duration);
+})
+
+musicAudio.addEventListener('timeupdate', (e) => {
+  // 更新播放器状态
+  updatePlayerHtml(musicAudio.currentTime, musicAudio.duration);
+})

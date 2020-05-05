@@ -30,7 +30,7 @@ class DataStore extends Store{
   }
   deleteTracks = (id) => {
     this.tracks = this.tracks.filter((track) => track.id !== id);
-    this.saveTracks(this.tracks); 
+    return this.saveTracks(this.tracks); 
   }
 }
 
