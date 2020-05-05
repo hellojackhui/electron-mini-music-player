@@ -1,0 +1,26 @@
+directories:
+  output: dist
+  buildResources: build
+appId: electronMiniMusicPlayer
+mac:
+  category: public.app-category.developer-tools
+dmg:
+  background: build/install.png
+  icon: build/logo.icns
+  iconSize: 100
+  contents:
+    - x: 380
+      'y': 280
+      type: link
+      path: /Applications
+    - x: 110
+      'y': 280
+      type: file
+  window:
+    width: 500
+    height: 500
+linux:
+  target:
+    - AppImage
+    - deb
+electronVersion: 8.2.5

@@ -1,23 +1,58 @@
 {
-  "name": "electron-quick-start",
+  "name": "electron-mini-music-player",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "A mini music player developed by electron",
   "main": "main.js",
   "scripts": {
-    "start": "nodemon --watch main.js --exec 'electron .'"
+    "start": "electron .",
+    "dist": "electron-builder"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "build": {
+    "appId": "electronMiniMusicPlayer",
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "dmg": {
+      "background": "build/install.png",
+      "icon": "build/logo.icns",
+      "iconSize": 100,
+      "contents": [
+        {
+          "x": 380,
+          "y": 280,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 110,
+          "y": 280,
+          "type": "file"
+        }
+      ],
+      "window": {
+        "width": 500,
+        "height": 500
+      }
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    }
+  },
+  "repository": "https://github.com/hellojackhui/electron-mini-music-player.git",
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "music",
+    "music-player",
+    "hellojackhui"
   ],
-  "author": "GitHub",
+  "author": "hellojackhui",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^8.2.5",
+    "electron-builder": "^22.6.0",
     "nodemon": "^2.0.3"
   },
   "dependencies": {
