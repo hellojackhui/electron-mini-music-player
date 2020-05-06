@@ -6,15 +6,15 @@ mac:
   category: public.app-category.developer-tools
 dmg:
   background: build/install.png
-  icon: build/logo.icns
+  icon: build/icon.icns
   iconSize: 100
   contents:
     - x: 380
-      'y': 280
+      'y': 340
       type: link
       path: /Applications
     - x: 110
-      'y': 280
+      'y': 340
       type: file
   window:
     width: 500
